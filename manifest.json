@@ -20,7 +20,10 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "osv-scanner-extension@vishwas.dev"
+      "id": "osv-scanner-extension@vishwas.dev",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
     }
   },
   "background": {

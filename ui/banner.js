@@ -116,7 +116,7 @@ window.OSVBanner = {
   _createLoadingBanner(packageName, ecosystem, version) {
     const el = document.createElement("div");
     el.id = "osv-banner-root";
-    el.innerHTML = `
+    this._setHTML(el, `
       <div class="osv-banner osv-loading">
         <div class="osv-banner-header">
           <span class="osv-logo">🛡️ OSV Security Scanner</span>
@@ -124,12 +124,12 @@ window.OSVBanner = {
           <div class="osv-spinner"></div>
         </div>
       </div>
-    `;
+    `);
     return el;
   },
 
   _renderError(banner, error) {
-    banner.innerHTML = `
+    this._setHTML(banner, `
       <div class="osv-banner osv-state-error">
         <div class="osv-banner-header">
           <span class="osv-logo">🛡️ OSV Security Scanner</span>
@@ -137,7 +137,7 @@ window.OSVBanner = {
           <button class="osv-dismiss" title="Dismiss">✕</button>
         </div>
       </div>
-    `;
+    `);
     banner.querySelector(".osv-dismiss").addEventListener("click", () => banner.remove());
   },
 
@@ -152,7 +152,7 @@ window.OSVBanner = {
 
     const osvLink = this._buildOSVLink(packageName, ecosystem);
 
-    banner.innerHTML = `
+    this._setHTML(banner, `
       <div class="osv-banner ${stateClass}">
         <div class="osv-banner-header">
           <span class="osv-logo">🛡️ OSV Security Scanner</span>
@@ -187,7 +187,7 @@ window.OSVBanner = {
         </div>
         ` : ""}
       </div>
-    `;
+    `);
 
     // Wire up dismiss
     banner.querySelector(".osv-dismiss")?.addEventListener("click", () => banner.remove());
@@ -301,4 +301,9 @@ window.OSVBanner = {
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
   },
+
+  _setHTML(element, htmlTemplate) {
+    const doc = new DOMParser().parseFromString(htmlTemplate, "text/html");
+    element.replaceChildren(...doc.body.childNodes);
+  }
 };
