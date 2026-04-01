@@ -1,0 +1,27 @@
+name: Release Extension
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Chrome Extension (ZIP)
+        run: |
+          zip -r osv-scanner-chrome.zip . -x "*.git*" "*.github*" "*.DS_Store*" "*.zip" "*.xpi"
+
+      - name: Build Firefox Extension (XPI)
+        run: |
+          zip -r osv-scanner-firefox.xpi . -x "*.git*" "*.github*" "*.DS_Store*" "*.zip" "*.xpi"
+
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            osv-scanner-chrome.zip
+            osv-scanner-firefox.xpi
