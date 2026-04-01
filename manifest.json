@@ -18,7 +18,13 @@
     "https://central.sonatype.com/*",
     "https://mvnrepository.com/*"
   ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "osv-scanner-extension@vishwas.dev"
+    }
+  },
   "background": {
+    "scripts": ["background.js"],
     "service_worker": "background.js",
     "type": "module"
   },
