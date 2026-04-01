@@ -1,0 +1,196 @@
+/* ui/banner.css — OSV Security Scanner banner styles */
+
+#osv-banner-root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+  position: relative;
+  z-index: 9999;
+}
+
+.osv-banner {
+  border-radius: 8px;
+  border: 1.5px solid #e2e8f0;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+/* ── State colours ─────────────────────────────────────── */
+.osv-state-safe    { border-color: #22c55e; background: #f0fdf4; }
+.osv-state-low     { border-color: #86efac; background: #f0fdf4; }
+.osv-state-medium  { border-color: #f59e0b; background: #fffbeb; }
+.osv-state-high    { border-color: #ef4444; background: #fef2f2; }
+.osv-state-critical{ border-color: #7c3aed; background: #faf5ff; }
+.osv-state-error   { border-color: #94a3b8; background: #f8fafc; }
+.osv-loading       { border-color: #60a5fa; background: #eff6ff; }
+
+/* ── Header ─────────────────────────────────────────────── */
+.osv-banner-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  flex-wrap: wrap;
+}
+
+.osv-logo {
+  font-weight: 700;
+  font-size: 13px;
+  color: #1e293b;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.osv-status {
+  flex: 1;
+  color: #1e293b;
+}
+
+.osv-scanning {
+  flex: 1;
+  color: #475569;
+}
+
+.osv-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+/* ── Spinner ─────────────────────────────────────────────── */
+.osv-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #bfdbfe;
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: osv-spin 0.7s linear infinite;
+  margin-left: auto;
+}
+@keyframes osv-spin { to { transform: rotate(360deg); } }
+
+/* ── Buttons & links ─────────────────────────────────────── */
+.osv-toggle-btn {
+  background: rgba(0,0,0,0.06);
+  border: none;
+  border-radius: 5px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #334155;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.osv-toggle-btn:hover { background: rgba(0,0,0,0.12); }
+
+.osv-ext-link {
+  font-size: 12px;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 4px 8px;
+  border-radius: 5px;
+  border: 1px solid #bfdbfe;
+  background: #eff6ff;
+}
+.osv-ext-link:hover { background: #dbeafe; }
+
+.osv-dismiss {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: #94a3b8;
+  padding: 2px 6px;
+  border-radius: 4px;
+  line-height: 1;
+}
+.osv-dismiss:hover { color: #475569; background: rgba(0,0,0,0.06); }
+
+/* ── Vuln list ───────────────────────────────────────────── */
+.osv-vuln-list {
+  padding: 0 14px 14px;
+  border-top: 1px solid rgba(0,0,0,0.07);
+}
+
+.osv-severity-summary {
+  display: flex;
+  gap: 6px;
+  padding: 10px 0 8px;
+  flex-wrap: wrap;
+}
+
+/* ── Table ───────────────────────────────────────────────── */
+.osv-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.osv-table th {
+  text-align: left;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  border-bottom: 1px solid #e2e8f0;
+  background: rgba(0,0,0,0.03);
+}
+
+.osv-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: top;
+  color: #1e293b;
+}
+
+.osv-table tr:last-child td { border-bottom: none; }
+.osv-table tr:hover td { background: rgba(0,0,0,0.02); }
+
+.osv-vuln-id {
+  font-weight: 600;
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.osv-vuln-id:hover { text-decoration: underline; }
+
+.osv-summary { color: #475569; max-width: 320px; }
+
+.osv-mono {
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+  color: #475569;
+}
+
+.osv-fixed { color: #16a34a; }
+
+.osv-overflow-note {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: #64748b;
+}
+.osv-overflow-note a { color: #2563eb; }
+
+/* ── Severity badges ─────────────────────────────────────── */
+.osv-severity-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.osv-sev-critical { background: #ede9fe; color: #6d28d9; border: 1px solid #c4b5fd; }
+.osv-sev-high     { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+.osv-sev-medium   { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+.osv-sev-low      { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+.osv-sev-unknown  { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }

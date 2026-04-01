@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "OSV Security Scanner",
+  "version": "1.0.0",
+  "description": "Shows vulnerability data from osv.dev for packages on npm, PyPI, and Maven Central.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.osv.dev/*",
+    "https://www.npmjs.com/*",
+    "https://pypi.org/*",
+    "https://central.sonatype.com/*",
+    "https://mvnrepository.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.npmjs.com/package/*"],
+      "js": ["ui/banner.js", "content-scripts/npm.js"],
+      "css": ["ui/banner.css"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://pypi.org/project/*"],
+      "js": ["ui/banner.js", "content-scripts/pypi.js"],
+      "css": ["ui/banner.css"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://central.sonatype.com/artifact/*",
+        "https://mvnrepository.com/artifact/*"
+      ],
+      "js": ["ui/banner.js", "content-scripts/maven.js"],
+      "css": ["ui/banner.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+    },
+    "default_title": "OSV Security Scanner"
+  }
+}
