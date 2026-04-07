@@ -1,5 +1,7 @@
 # 🛡️ OSV Security Scanner — Browser Extension
 
+[![Firefox Add-on](https://img.shields.io/amo/v/osv-security-scanner?logo=firefox&color=FF7139)](https://addons.mozilla.org/en-US/firefox/addon/osv-security-scanner/)
+
 Automatically shows vulnerability data from [osv.dev](https://osv.dev) when you browse package registries.
 
 ## Supported Registries
